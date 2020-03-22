@@ -1,0 +1,25 @@
+{
+  "name": "d3-tech-companies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shmily40686/d3-tech-companies.git"
+  },
+  "author": "shmily40686",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shmily40686/d3-tech-companies/issues"
+  },
+  "homepage": "https://github.com/shmily40686/d3-tech-companies#readme",
+  "devDependencies": {
+    "csv-loader": "^3.0.2"
+  },
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}

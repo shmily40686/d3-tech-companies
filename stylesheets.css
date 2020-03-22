@@ -1,0 +1,27 @@
+#bar {
+    background-color: rgb(26, 25, 25);
+    color: white;
+}
+#bar rect {
+    fill:white;
+}
+
+#bar text {
+    font-size: 15px;
+    font-family: sans-serif;
+}
+
+
+#plot {
+    background-color: rgb(26, 25, 25);
+    color: white;
+}
+#plot circle {
+    fill: white;
+    opacity: 0.8;
+}
+
+#plot text {
+    font-size: 15px;
+    font-family: sans-serif;
+}
