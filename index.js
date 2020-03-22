@@ -117,6 +117,7 @@ axios.get('https://api.worldtradingdata.com/api/v1/history?symbol=FB.MX&date_fro
         console.log(response);
     })
     .catch(function (error) {
+
         console.log(error);
     })
 
