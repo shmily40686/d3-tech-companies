@@ -4,6 +4,7 @@
 <head>
     <title>Tech-D3</title>
     <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheets.css" />
 </head>
 
@@ -12,10 +13,46 @@
         <h1>D3 Project Display</h1>
     </div>
     <div id="main"> 
-        <svg id="bar" width="960" height="500"></svg>
-        <svg id="plot" width="960" height="500"></svg>
-        <svg id="line" width="960" height="500"></svg>
-        <svg id="area" width="960" height="500"></svg>
+        <div >
+            <div class="first">
+                <div class="first-box">
+                    <h3>Select Tech Company to See their total amount of people</h3>
+                    <div class="button-bar">
+                        <button class="change-button">Bar</button>
+                        <button class="change-button">Circle</button>
+                    </div>
+                    <svg id="size" width="660" height="400"></svg>
+                </div>
+                <div class="first-box">
+                    <div class="first-box-header">
+                        <h3>Select Tech Company to See their stock volume</h3>
+                        <select id="price-select">
+                            <option value="FB.MX">FaceBook</option>
+                            <option value="AAP2.L">Apple</option>
+                            <option value="AMZ2.L">Amazon</option>
+                            <option value="MSFT.MX">Microsoft</option>
+                            <option value="CRM">Salesforce</option>
+                            <option value="TL0.DE">Tesla</option>
+                        </select>
+                    </div>
+                    <div class="button-bar">
+                        <button class="change-button">Line</button>
+                        <button class="change-button">Area</button>
+                    </div>
+                    <svg id="price" width="660" height="400"></svg>
+                </div>
+            </div>
+            <div class="second-box">
+                <h3>Select shape you want to see the earth</h3>
+                <div class="button-bar">
+                    <button class="change-button">Map</button>
+                    <button class="change-button">Globe</button>
+                    <button class="change-button">Flat-Globe</button>
+                    <button class="change-button">Globe-Map</button>
+                </div>
+                <svg id="map" width="960" height="500"></svg>
+            </div>
+        </div>
     </div>
     <div id="footer">
        <div>@Xiaowen Ling, 2020</div>

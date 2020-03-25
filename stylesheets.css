@@ -1,3 +1,4 @@
+
 #header {
     display: flex;
     justify-content: center;
@@ -23,43 +24,46 @@
     border-top: 1px solid #e0e0e0;
 }
 
-#bar {
+.first {
+    display: flex;
+    justify-content: space-around;
+}
+
+#size{
     background-color: rgb(26, 25, 25);
     color: white;
 }
-#bar rect {
+#size rect {
     fill:white;
 }
 
-#bar text {
-    font-size: 15px;
+#size text {
+    font-size: 12px;
     font-family: sans-serif;
 }
 
 
-#plot {
-    background-color: rgb(26, 25, 25);
-    color: white;
-}
-#plot circle {
+#size circle {
     fill: white;
     opacity: 0.8;
 }
 
-#plot text {
-    font-size: 15px;
-    font-family: sans-serif;
-}
 
-#line {
+#price {
     background-color: rgb(26, 25, 25);
     color: white;
+    margin-left: 10px;
 }
 
-#line text {
-    font-size: 15px;
+#price text {
+    font-size: 12px;
     font-family: sans-serif;
     color: white;
+}
+
+#map path {
+    stroke: white;
+    stroke-opacity: 0.4;
 }
 
 .line-path {
@@ -69,19 +73,39 @@
     stroke-linejoin: round;
 }
 
-#area {
-    background-color: rgb(26, 25, 25);
-    color: white;
-}
-
-#area text {
-    font-size: 15px;
-    font-family: sans-serif;
-    color: white;
-}
-
 .area-path {
     fill: maroon;
     opacity: 5;
     stroke-linejoin: round;
+}
+
+
+.button-bar {
+    display: flex;
+    justify-content: center;
+}
+
+.first-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.first-box-header {
+    display: flex;
+    align-items: center;
+}
+
+.first-box-header select {
+    margin-left: 10px;
+}
+
+.second-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.country:hover {
+    fill: maroon;
 }
