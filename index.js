@@ -1,11 +1,12 @@
 const axios = require('axios');
 
-const svg = d3.select("#bar")
-const svg2 = d3.select("#plot")
-const svg3 = d3.select("#line")
-const svg4 = d3.select("#area")
+window.svg = d3.select("#size")
+window.svg2 = d3.select("#price")
+window.svg3 = d3.select("#map")
+
 const width = +svg.attr('width')
 const height =  +svg.attr('height')
+
 
 const renderBar = data => {
     const margin = { top: 90, right: 90, bottom: 90, left: 90 }
@@ -45,7 +46,7 @@ const renderBar = data => {
         .attr("height",yScale.bandwidth())
 }
 
-renderBar(data)
+
 // Instead, load set the data using data.js.
 
 
@@ -67,7 +68,7 @@ const renderPlot = data => {
         .range([0, innerHeight])
         .padding(0.9)
 
-    const g = svg2.append("g")
+    const g = svg.append("g")
         .attr('transform', `translate(${margin.left},${margin.right})`)
 
     const xAxis = d3.axisBottom(xScale)
@@ -109,7 +110,6 @@ const renderPlot = data => {
         .attr("r", 10)
 }
 
-renderPlot(data)
 
 
 
@@ -123,10 +123,10 @@ const renderLine = data => {
     const innerWidth = width - margin.left - margin.right
     const innerHeight = height - margin.top - margin.bottom
 
-    const title = 'Check the Price';
+    const title = '';
 
     const xValue = d => d.timestamp;
-    const xAxisLabel = 'the Volume';
+    const xAxisLabel = '';
 
     const yValue = d => d.volume;
     const circleRadius = 10;
@@ -143,7 +143,7 @@ const renderLine = data => {
         .range([innerHeight, 0])
         .nice();
 
-    const g = svg3.append('g')
+    const g = svg2.append('g')
         .attr('transform', `translate(${margin.left},${margin.top})`);
 
     const xAxis = d3.axisBottom(xScale)
@@ -201,10 +201,10 @@ const renderArea = data => {
     const innerWidth = width - margin.left - margin.right
     const innerHeight = height - margin.top - margin.bottom
 
-    const title = 'Check the Price';
+    const title = '';
 
     const xValue = d => d.timestamp;
-    const xAxisLabel = 'the Volume';
+    const xAxisLabel = '';
 
     const yValue = d => d.volume;
     const circleRadius = 10;
@@ -221,7 +221,7 @@ const renderArea = data => {
         .range([innerHeight, 0])
         .nice();
 
-    const g = svg4.append('g')
+    const g = svg2.append('g')
         .attr('transform', `translate(${margin.left},${margin.top})`);
 
     const xAxis = d3.axisBottom(xScale)
@@ -276,24 +276,137 @@ const renderArea = data => {
 };
 
 
-axios.get('https://api.worldtradingdata.com/api/v1/history?symbol=FB.MX&date_from=2020-01-01&api_token=uMB99O8bJwwfS3tZJAZcQ3eYJBb4g0vHQY8eDk3s9Hfzskq0YEe77TzDMlLm')
-    .then(function (response) {
-        console.log("response", response)
-        const dataPrice = []
-        for (let key in response.data.history) {
-            let data = {
-                timestamp: new Date(key),
-                volume: parseInt(response.data.history[key].volume)
-            }
-            dataPrice.push(data)
-        }
-        console.log("dataPrice", dataPrice)
+
+
+
+
+let barOrPlot = "Bar"
+let lineOrArea = "Line"
+const renderBarAndPlot = () =>  {
+    if(barOrPlot === "Bar") {
+        renderBar(data)
+    } else {
+        renderPlot(data)
+    }
+}
+renderBarAndPlot()
+
+const renderLineAndArea = (dataPrice) => {
+    if (lineOrArea === "Line") {
         renderLine(dataPrice)
+    } else {
         renderArea(dataPrice)
-    })
-    .catch(function (error) {
+    }
+}
 
-        console.log(error);
-    })
+let priceData = []
 
-    
+fetchDatePrice("FB.MX")
+
+
+const changeButton = document.querySelectorAll(".change-button")
+
+changeButton.forEach(eachB => {
+    eachB.addEventListener("click",(e) => {
+        console.log(e.target.innerText)
+        if (e.target.innerText === "Bar" || e.target.innerText === "Circle") {
+            barOrPlot = e.target.innerText
+            svg.selectAll("g").remove()
+            renderBarAndPlot()
+        } else if (e.target.innerText === "Line" || e.target.innerText === "Area") {
+            lineOrArea = e.target.innerText
+            svg2.selectAll("g").remove()
+            renderLineAndArea(priceData)
+        } else if (e.target.innerText === "Globe" || e.target.innerText === "Map" || e.target.innerText === "Flat-Globe" || e.target.innerText === "Globe-Map") {
+            if (e.target.innerText === "Globe") {
+                svg3.selectAll("path").remove()
+                makeMap("Globe")
+            } else if (e.target.innerText === "Map") {
+                svg3.selectAll("path").remove()
+                makeMap("Map")
+            } else if (e.target.innerText === "Flat-Globe") {
+                svg3.selectAll("path").remove()
+                makeMap("Flat-Globe")
+            } else {
+                svg3.selectAll("path").remove()
+                makeMap("Globe-Map")
+            }
+        }
+    } )
+})
+
+const selectPrice = document.querySelector("#price-select")
+
+selectPrice.addEventListener("change", (e) => {
+    console.log(e.target.value)
+    fetchDatePrice(e.target.value)
+})
+
+
+function fetchDatePrice(string) {
+    axios.get(`https://api.worldtradingdata.com/api/v1/history?symbol=${string}&date_from=2020-01-01&api_token=uMB99O8bJwwfS3tZJAZcQ3eYJBb4g0vHQY8eDk3s9Hfzskq0YEe77TzDMlLm`)
+        .then(function (response) {
+            console.log("response", response)
+            const dataPrice = []
+            for (let key in response.data.history) {
+                let data = {
+                    timestamp: new Date(key),
+                    volume: parseInt(response.data.history[key].volume)
+                }
+                dataPrice.push(data)
+            }
+            priceData = dataPrice;
+            svg2.selectAll("g").remove()
+            renderLineAndArea(dataPrice)
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+}
+
+
+
+// const projection = d3.geoNaturalEarth1();
+// const projection = d3.geoOrthographic();
+
+
+function makeMap(shape) {
+    let projection;
+    if(shape === "Map") {
+        projection = d3.geoMercator();
+    } else if (shape === "Globe") {
+        projection = d3.geoOrthographic();
+    } else if (shape === "Flat-Globe") {
+        projection = d3.geoConicEquidistant()
+    } else {
+        projection = d3.geoEqualEarth()
+    }
+
+    svg.append("path")
+    const g = svg3.append("g") 
+
+    svg3.call(d3.zoom()
+        .on('zoom', () => {
+        g.attr('transform',d3.event.transform)
+    }))
+
+    let pathGenerator = d3.geoPath().projection(projection)
+    Promise.all([d3.tsv("https://unpkg.com/world-atlas@1.1.4/world/110m.tsv"), d3.json("https://unpkg.com/world-atlas@1.1.4/world/50m.json")])
+    .then(([tsvData,JsonData]) => {
+        const countries = topojson.feature(JsonData, JsonData.objects.countries)
+        const countryName = tsvData.reduce((a,d) => {
+            a[d.iso_n3] = d.name
+            return a
+        }, {})
+        g.selectAll('path')
+            .data(countries.features)
+            .enter().append('path')
+            .attr('d', d => pathGenerator(d))
+            .attr("class",'country')
+            .append("title")
+            .text(d => countryName[d.id])
+    })
+}
+
+makeMap("Map")
+
