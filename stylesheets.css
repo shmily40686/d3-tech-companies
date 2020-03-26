@@ -109,3 +109,23 @@
 .country:hover {
     fill: maroon;
 }
+
+#tree path {
+    fill:none;
+    stroke:rgb(187, 149, 149);
+}
+
+#tree path:hover {
+    fill:none;
+    stroke:rgb(233, 86, 86);
+    stroke-width: 5px;
+}
+
+#tree text {
+    text-shadow:
+    -1px -1px 3px white,
+    -1px  1px 3px white,
+    1px -1px 3px white,
+    1px -1px 3px white
+
+}

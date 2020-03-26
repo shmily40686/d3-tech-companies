@@ -3,6 +3,7 @@ const axios = require('axios');
 window.svg = d3.select("#size")
 window.svg2 = d3.select("#price")
 window.svg3 = d3.select("#map")
+window.svg4 = d3.select("#tree")
 
 const width = +svg.attr('width')
 const height =  +svg.attr('height')
@@ -410,3 +411,39 @@ function makeMap(shape) {
 
 makeMap("Map")
 
+
+
+const renderTree= data => {
+    const root = d3.hierarchy(data)
+    const treeLayout = d3.tree()
+            .size([660,800])
+    const links = treeLayout(root).links()
+    const linkPathGenerator = d3.linkHorizontal()
+    // const linkPathGenerator = d3.linkVertical()
+          .x(d => d.y)
+          .y(d => d.x)
+
+    const g = svg4.append("g")
+                  .attr('transform',"translate(65,25)")
+    
+    svg4.call(d3.zoom().on('zoom', () => {
+         g.attr('transform',d3.event.transform)
+    }))
+
+    g.selectAll('path').data(links)
+        .enter()
+        .append('path')
+        .attr("d",linkPathGenerator)
+    g.selectAll("text")
+        .data(root.descendants())
+        .enter()
+        .append("text")
+        .attr('x',d => d.y)
+        .attr('y',d => d.x)
+        .attr("dy",'0.32em')
+        .attr("text-anchor","middle")
+        .attr("font-size",d => 1.9 - d.depth + "em")
+        .text(d => d.data.name)
+}
+
+renderTree(data2)
