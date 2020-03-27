@@ -144,42 +144,6 @@ const data2 = {
                     value: 32
                 },
                 {
-                    name: 'Qwiklabs',
-                    value: 85
-                },
-                {
-                    name: 'LeapDroid',
-                    value: 48
-                },
-                {
-                    name: 'FameBit',
-                    value: 46
-                },
-                {
-                    name: 'API.AI',
-                    value: 52
-                },
-                {
-                    name: 'Urban Engineers',
-                    value: 300
-                },
-                {
-                    name: 'Apigee',
-                    value: 374
-                },
-                {
-                    name: 'Orbitera',
-                    value: 505
-                },
-                {
-                    name: 'Kifi',
-                    value: 13
-                },
-                {
-                    name: 'Anvato',
-                    value: 20
-                },
-                {
                     name: 'Moodstocks',
                     value: 38
                 },
@@ -196,32 +160,12 @@ const data2 = {
                     value: 187
                 },
                 {
-                    name: 'Jibe Mobile',
-                    value: 41
-                },
-                {
-                    name: 'Oyster',
-                    value: 42
-                },
-                {
                     name: 'Thrive Audio',
                     value: 209
                 },
                 {
-                    value: 32,
-                    name: 'Red Hot Labs'
-                },
-                {
                     value: 219,
                     name: 'Firebase'
-                },
-                {
-                    value: 18,
-                    name: 'GreenThrottle'
-                },
-                {
-                    value: 73,
-                    name: 'Impermium'
                 },
                 {
                     value: 1100,
@@ -291,3 +235,4 @@ const data2 = {
         }
     ]
 }
+

@@ -416,7 +416,7 @@ makeMap("Map")
 const renderTree= data => {
     const root = d3.hierarchy(data)
     const treeLayout = d3.tree()
-            .size([660,800])
+            .size([500,530])
     const links = treeLayout(root).links()
     const linkPathGenerator = d3.linkHorizontal()
     // const linkPathGenerator = d3.linkVertical()

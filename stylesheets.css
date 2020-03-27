@@ -110,14 +110,19 @@
     fill: maroon;
 }
 
+#tree {
+   background-color: rgb(26, 25, 25);
+   color: white; 
+}
+
 #tree path {
     fill:none;
-    stroke:rgb(187, 149, 149);
+    stroke:rgb(181, 41, 41);
 }
 
 #tree path:hover {
     fill:none;
-    stroke:rgb(233, 86, 86);
+    stroke: white;
     stroke-width: 5px;
 }
 
@@ -126,6 +131,12 @@
     -1px -1px 3px white,
     -1px  1px 3px white,
     1px -1px 3px white,
-    1px -1px 3px white
+    1px -1px 3px white;
+    pointer-events: none;
 
+}
+
+#collapsible {
+   background-color: rgb(26, 25, 25);
+   color: white; 
 }
