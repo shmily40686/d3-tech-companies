@@ -83,7 +83,7 @@
 .button-bar {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .first-box {
@@ -114,6 +114,7 @@
 #tree {
    background-color: rgb(26, 25, 25);
    color: white; 
+   margin-right: 10px;
 }
 
 #tree path {
@@ -143,15 +144,20 @@
 }
 
 
+.third-box {
+    display: flex;
+    justify-content: center;
+}
+
+
 .change-button {
   display: inline-block;
   margin-bottom: 0;
   text-align: center;
-  text-transform: uppercase;
   vertical-align: middle;
   cursor: pointer;
   background-image: none;
-  whitespace: nowrap;
+  white-space: nowrap;
   padding: 5px 10px;
   font-size: 1.2rem;
   border-radius: 3px;
