@@ -226,7 +226,6 @@ const renderArea = data => {
         .attr('transform', `translate(${margin.left},${margin.top})`);
 
     const xAxis = d3.axisBottom(xScale)
-        .ticks(6)
         .tickSize(-innerHeight)
         .tickPadding(15);
 
@@ -369,7 +368,18 @@ function fetchDatePrice(string) {
 
 // const projection = d3.geoNaturalEarth1();
 // const projection = d3.geoOrthographic();
+var countries = [];
+var countryName = {};
 
+var mapPromises = Promise.all([d3.tsv("https://unpkg.com/world-atlas@1.1.4/world/110m.tsv"), d3.json("https://unpkg.com/world-atlas@1.1.4/world/50m.json")]);
+mapPromises
+    .then(([tsvData, JsonData]) => {
+        countries = topojson.feature(JsonData, JsonData.objects.countries)
+        countryName = tsvData.reduce((a, d) => {
+            a[d.iso_n3] = d.name
+            return a
+        }, {})
+    });
 
 function makeMap(shape) {
     let projection;
@@ -388,17 +398,17 @@ function makeMap(shape) {
 
     svg3.call(d3.zoom()
         .on('zoom', () => {
-        g.attr('transform',d3.event.transform)
-    }))
+            if (d3.event.transform.k > 1) {
+                d3.event.transform.k = Math.min(d3.event.transform.k, 6);
+            } else {
+                d3.event.transform.k = Math.max(d3.event.transform.k, .35);
+            }
+            g.attr('transform',d3.event.transform)
+        }
+    ))
 
     let pathGenerator = d3.geoPath().projection(projection)
-    Promise.all([d3.tsv("https://unpkg.com/world-atlas@1.1.4/world/110m.tsv"), d3.json("https://unpkg.com/world-atlas@1.1.4/world/50m.json")])
-    .then(([tsvData,JsonData]) => {
-        const countries = topojson.feature(JsonData, JsonData.objects.countries)
-        const countryName = tsvData.reduce((a,d) => {
-            a[d.iso_n3] = d.name
-            return a
-        }, {})
+    mapPromises.then(() => {
         g.selectAll('path')
             .data(countries.features)
             .enter().append('path')
@@ -406,7 +416,7 @@ function makeMap(shape) {
             .attr("class",'country')
             .append("title")
             .text(d => countryName[d.id])
-    })
+    });
 }
 
 makeMap("Map")
@@ -427,6 +437,11 @@ const renderTree= data => {
                   .attr('transform',"translate(65,25)")
     
     svg4.call(d3.zoom().on('zoom', () => {
+        if (d3.event.transform.k > 1) {
+            d3.event.transform.k = Math.min(d3.event.transform.k, 6);
+        } else {
+            d3.event.transform.k = Math.max(d3.event.transform.k, .35);
+        }
          g.attr('transform',d3.event.transform)
     }))
 

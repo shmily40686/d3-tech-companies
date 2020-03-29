@@ -5,18 +5,20 @@
     <title>Tech-D3</title>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script>
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link rel="stylesheet" type="text/css" href="stylesheets.css" />
 </head>
 
 <body>
     <div id="header">
-        <h1>D3 Project Display</h1>
+        <img src="https://avatars3.githubusercontent.com/u/1562726?s=400&v=4"></img>
+        <div id="header-text">Project Display</div>
     </div>
     <div id="main"> 
         <div >
             <div class="first">
                 <div class="first-box">
-                    <h3>Select Tech Company to See their total amount of people</h3>
+                    <h3>Number of employees of some tech companies</h3>
                     <div class="button-bar">
                         <button class="change-button">Bar</button>
                         <button class="change-button">Circle</button>
@@ -26,7 +28,7 @@
                 
                 <div class="first-box">
                     <div class="first-box-header">
-                        <h3>Select Tech Company to See their stock volume</h3>
+                        <h3>Stock volume of companies</h3>
                         <select id="price-select">
                             <option value="FB.MX">FaceBook</option>
                             <option value="AAP2.L">Apple</option>
@@ -45,7 +47,7 @@
             </div>
 
             <div class="second-box">
-                <h3>Select shape you want to see the earth</h3>
+                <h3>World display</h3>
                 <div class="button-bar">
                     <button class="change-button">Map</button>
                     <button class="change-button">Globe</button>
@@ -57,7 +59,7 @@
             <div>
 
             <div class="first-box">
-                <h3>Tree Graph relatshiop bewtwent tech company</h3>
+                <h3>Graph representation of tech company relationships</h3>
                 <div class="third-box">
                     <svg id="tree" width="660" height="550"></svg>
                     <svg id="collapsible" width="660" height="550"></svg>
@@ -65,7 +67,15 @@
             </div>
     </div>
     <div id="footer">
-       <div>@Xiaowen Ling, 2020</div>
+        <div>
+            <a class="icon-container github" href="https://github.com/shmily40686">
+                <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/mark-github-512.png" width="30px" height="30px">
+            </a>
+            <a class="icon-container" href="https://www.linkedin.com/in/lingxiaowen/">
+                <img src="https://image.flaticon.com/icons/png/512/174/174857.png" width="30px" height="30px">
+            </a>
+        </div>
+       <div>@Xiaowen Ling D3, 2020</div>
     </div>
 </body>
 <script src="./data.js"></script>
