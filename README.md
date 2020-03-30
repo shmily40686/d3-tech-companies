@@ -12,20 +12,26 @@ D3 Gallery was built using:
   
 ## Overview and Highlights 
 
-### Bar graph/ Scatter Plot
+### Bar graph/ Scatter plot
  * Displays the number of employees for some tech companies
  * Changes to a scatter plot when "Circle" button is clicked
+ 
+![bar graph and scatter plot](images/bar_scatter.gif)
  
 ### Line graph/ Area chart
  * Displays the number of stock volume for some tech companies
  * Changes to an area chart when the "Area" button is clicked
  * Displays different data when a different company is selected
  
+![line graph and area chart](images/line_area.gif)
+ 
 ### World display
  * Displays the countries in the world
  * Offers 4 different ways to view the world
  * Zoom in or out by scrolling
  * Displays the country name when mousing over countries
+ 
+![world map](images/world_1.gif)
  
 ### Tree display
  * Displays the relationship between Alphabet and some of its subsidiaries
@@ -34,6 +40,7 @@ D3 Gallery was built using:
 
 ### Graph display
  * Displays an interactive graph with color-coded nodes
+ * Focuses on connections of node mouse hovers over
  * Zoom in or out by scrolling
 
 ## Created by
