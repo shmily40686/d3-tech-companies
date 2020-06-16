@@ -299,7 +299,41 @@ const renderLineAndArea = (dataPrice) => {
     }
 }
 
-let priceData = []
+let priceData = [
+    {
+        timestamp: new Date("2020-04-03"),
+        volume: 100
+    },
+    {
+        timestamp: new Date("2020-04-04"),
+        volume: 200
+    },
+    {
+        timestamp: new Date("2020-04-05"),
+        volume: 1000
+    },
+    {
+        timestamp: new Date("2020-04-06"),
+        volume: 800
+    },
+    {
+        timestamp: new Date("2020-04-07"),
+        volume: 600
+    },
+    {
+        timestamp: new Date("2020-04-08"),
+        volume: 1000
+    },
+    {
+        timestamp: new Date("2020-04-09"),
+        volume: 900
+    }
+    ,
+    {
+        timestamp: new Date("2020-04-10"),
+        volume: 100
+    }
+]
 
 fetchDatePrice("FB.MX")
 
@@ -308,7 +342,6 @@ const changeButton = document.querySelectorAll(".change-button")
 
 changeButton.forEach(eachB => {
     eachB.addEventListener("click",(e) => {
-        console.log(e.target.innerText)
         if (e.target.innerText === "Bar" || e.target.innerText === "Circle") {
             barOrPlot = e.target.innerText
             svg.selectAll("g").remove()
@@ -344,30 +377,29 @@ selectPrice.addEventListener("change", (e) => {
 
 
 function fetchDatePrice(string) {
-    axios.get(`https://api.worldtradingdata.com/api/v1/history?symbol=${string}&date_from=2020-01-01&api_token=uMB99O8bJwwfS3tZJAZcQ3eYJBb4g0vHQY8eDk3s9Hfzskq0YEe77TzDMlLm`)
-        .then(function (response) {
-            console.log("response", response)
-            const dataPrice = []
-            for (let key in response.data.history) {
-                let data = {
-                    timestamp: new Date(key),
-                    volume: parseInt(response.data.history[key].volume)
-                }
-                dataPrice.push(data)
-            }
-            priceData = dataPrice;
-            svg2.selectAll("g").remove()
-            renderLineAndArea(dataPrice)
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
+    // axios.get(`https://api.worldtradingdata.com/api/v1/history?symbol=${string}&date_from=2020-01-01&api_token=uMB99O8bJwwfS3tZJAZcQ3eYJBb4g0vHQY8eDk3s9Hfzskq0YEe77TzDMlLm`)
+    //     .then(function (response) {
+    //         console.log("response", response)
+    //         const dataPrice = []
+    //         for (let key in response.data.history) {
+    //             let data = {
+    //                 timestamp: new Date(key),
+    //                 volume: parseInt(response.data.history[key].volume)
+    //             }
+    //             dataPrice.push(data)
+    //         }
+    //         priceData = dataPrice;
+    //         svg2.selectAll("g").remove()
+    //         renderLineAndArea(dataPrice)
+    //     })
+    //     .catch(function (error) {
+    //         console.log(error);
+    //     })
+    svg2.selectAll("g").remove()
+    renderLineAndArea(priceData)
 }
 
 
-
-// const projection = d3.geoNaturalEarth1();
-// const projection = d3.geoOrthographic();
 var countries = [];
 var countryName = {};
 
