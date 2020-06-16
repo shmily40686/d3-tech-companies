@@ -131,7 +131,7 @@ const renderLine = data => {
 
     const yValue = d => d.volume;
     const circleRadius = 10;
-    const yAxisLabel = 'Time';
+    const yAxisLabel = '';
 
 
     const xScale = d3.scaleTime()
